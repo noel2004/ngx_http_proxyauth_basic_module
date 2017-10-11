@@ -449,7 +449,7 @@ ngx_http_proxyauth_basic_set_realm(ngx_http_request_t *r, ngx_str_t *realm)
 
     alcf = ngx_http_get_module_loc_conf(r, ngx_http_proxyauth_basic_module);
     if (alcf->no_unauth_resp) {
-        return NGX_HTTP_BAD_REQUEST;
+        return NGX_HTTP_CLOSE;
     }
 
     r->headers_out.www_authenticate = ngx_list_push(&r->headers_out.headers);
@@ -473,7 +473,7 @@ ngx_http_proxyauth_basic_set_realm(ngx_http_request_t *r, ngx_str_t *realm)
     r->headers_out.www_authenticate->value.data = basic;
     r->headers_out.www_authenticate->value.len = len;
 
-    return NGX_HTTP_UNAUTHORIZED;
+    return 407;
 }
 
 static void

@@ -1,3 +1,15 @@
+--- a/src/ngx_http_header_filter_module.c     2017-10-11 02:19:56.930454985 +0000
++++ b/src/ngx_http_header_filter_module.c     2017-10-11 02:19:12.081951747 +0000
+@@ -86,7 +86,7 @@
+     ngx_string("404 Not Found"),
+     ngx_string("405 Not Allowed"),
+     ngx_string("406 Not Acceptable"),
+-    ngx_null_string,  /* "407 Proxy Authentication Required" */
++    ngx_string("407 Proxy Authentication Required"),
+     ngx_string("408 Request Time-out"),
+     ngx_string("409 Conflict"),
+     ngx_string("410 Gone"),
+
 --- a/src/http/ngx_http_request.c	2017-07-11 21:24:09.000000000 +0800
 +++ b/src/http/ngx_http_request.c	2017-10-08 11:23:03.090701100 +0800
 @@ -150,6 +150,10 @@
